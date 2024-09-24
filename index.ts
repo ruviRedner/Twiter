@@ -1,6 +1,4 @@
-
 import exp,{Express} from 'express';
-// import {Express} from "express"
 import "dotenv/config"
 
 const app:Express = exp();
