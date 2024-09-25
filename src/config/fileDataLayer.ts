@@ -12,7 +12,7 @@ export const getFileData = async <T> (resourse:string):Promise<T[] | void> => {
 }
 
 
-export const save = async <T> (resourse:string,data:T[]):Promise<boolean> => {
+export const saveFile = async <T> (resourse:string,data:T[]):Promise<boolean> => {
     try {
         const jsonData: string = JSON.stringify(data);
         await fs.writeFile(`${__dirname}/data/${resourse}.json`, jsonData,{
