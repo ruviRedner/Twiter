@@ -29,17 +29,20 @@ router.post("/register",async(
 
 })
 
-router.post("/follow",async(
+router.post("/follow/:idm/:idt",async(
     req:Request
     ,res:Response
 ):Promise<void>=>{
     try {
-
-        res.status(200).json({
-            err:false,
-            message:"surry",
-            data:undefined
-        })
+         const result = await UserService.makeFollow(req.params.idm,req.params.idt)
+         if(result){
+            res.status(200).json({
+                err:false,
+                message:"surry",
+                data:result
+            })
+         }
+        
         
     } catch (err) {
         res.status(400).json({
@@ -56,14 +59,15 @@ router.get("/search",async(
     ,res:Response
 ):Promise<void>=>{
     try {
-
-        res.status(200).json({
-            err:false,
-            message:"surry",
-            data:undefined
-        })
-        
-    } catch (err) {
+        const result = await UserService.getUserBySearchQuery(req.query.username as string)
+        if(result){
+            res.status(200).json({
+                err:false,
+                message:"surry",
+                data:result
+            })
+        }
+        } catch (err) {
         res.status(400).json({
             err:true,
             message:"surry",
@@ -74,19 +78,20 @@ router.get("/search",async(
 })
 
 //? type = mine || else
-router.get("/profile",async(
+router.get("/profile/:id",async(
     req:Request
     ,res:Response
 ):Promise<void>=>{
     try {
-
-        res.status(200).json({
-            err:false,
-            message:"surry",
-            data:undefined
-        })
-        
-    } catch (err) {
+        const result = await UserService.getUserProfile(req.params.id)
+        if(result){
+            res.status(200).json({
+                err:false,
+                message:"surry",
+                data:result
+            })
+        }    
+        } catch (err) {
         res.status(400).json({
             err:true,
             message:"surry",

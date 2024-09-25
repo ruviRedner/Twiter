@@ -28,13 +28,16 @@ router.post("/register", async (req, res) => {
         });
     }
 });
-router.post("/follow", async (req, res) => {
+router.post("/follow/:idm/:idt", async (req, res) => {
     try {
-        res.status(200).json({
-            err: false,
-            message: "surry",
-            data: undefined
-        });
+        const result = await userService_1.default.makeFollow(req.params.idm, req.params.idt);
+        if (result) {
+            res.status(200).json({
+                err: false,
+                message: "surry",
+                data: result
+            });
+        }
     }
     catch (err) {
         res.status(400).json({
@@ -46,11 +49,14 @@ router.post("/follow", async (req, res) => {
 });
 router.get("/search", async (req, res) => {
     try {
-        res.status(200).json({
-            err: false,
-            message: "surry",
-            data: undefined
-        });
+        const result = await userService_1.default.getUserBySearchQuery(req.query.username);
+        if (result) {
+            res.status(200).json({
+                err: false,
+                message: "surry",
+                data: result
+            });
+        }
     }
     catch (err) {
         res.status(400).json({
@@ -61,13 +67,16 @@ router.get("/search", async (req, res) => {
     }
 });
 //? type = mine || else
-router.get("/profile", async (req, res) => {
+router.get("/profile/:id", async (req, res) => {
     try {
-        res.status(200).json({
-            err: false,
-            message: "surry",
-            data: undefined
-        });
+        const result = await userService_1.default.getUserProfile(req.params.id);
+        if (result) {
+            res.status(200).json({
+                err: false,
+                message: "surry",
+                data: result
+            });
+        }
     }
     catch (err) {
         res.status(400).json({

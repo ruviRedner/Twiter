@@ -8,11 +8,17 @@ const postService_1 = __importDefault(require("../services/postService"));
 const router = express_1.default.Router();
 router.get("/", async (req, res) => {
     try {
-        res.status(200).json({
-            err: false,
-            message: "surry",
-            data: undefined
-        });
+        const result = await postService_1.default.getAllPosts();
+        if (result) {
+            res.status(200).json({
+                err: false,
+                message: "surry",
+                data: result
+            });
+        }
+        else {
+            throw new Error("Cant get all posts");
+        }
     }
     catch (err) {
         res.status(400).json({
@@ -24,11 +30,17 @@ router.get("/", async (req, res) => {
 });
 router.get("/search", async (req, res) => {
     try {
-        res.status(200).json({
-            err: false,
-            message: "surry",
-            data: undefined
-        });
+        const result = await postService_1.default.getPostBySearch(req.query.word);
+        if (result) {
+            res.status(200).json({
+                err: false,
+                message: "please have a post",
+                data: result
+            });
+        }
+        else {
+            throw new Error("Cant get post by search");
+        }
     }
     catch (err) {
         res.status(400).json({
@@ -62,11 +74,17 @@ router.post("/", async (req, res) => {
 });
 router.get("/:id", async (req, res) => {
     try {
-        res.status(200).json({
-            err: false,
-            message: "surry",
-            data: undefined
-        });
+        const result = await postService_1.default.getPostById(req.params.id);
+        if (result) {
+            res.status(200).json({
+                err: false,
+                message: "please have a post",
+                data: result
+            });
+        }
+        else {
+            throw new Error("Cant get post by id");
+        }
     }
     catch (err) {
         res.status(400).json({
@@ -76,13 +94,19 @@ router.get("/:id", async (req, res) => {
         });
     }
 });
-router.patch("/like/:id", async (req, res) => {
+router.patch("/like/:idp/:idu", async (req, res) => {
     try {
-        res.status(200).json({
-            err: false,
-            message: "surry",
-            data: undefined
-        });
+        const result = await postService_1.default.likePost(req.params.idp, req.params.idu);
+        if (result) {
+            res.status(200).json({
+                err: false,
+                message: "surry",
+                data: result
+            });
+        }
+        else {
+            throw new Error("Cant  save like the post");
+        }
     }
     catch (err) {
         res.status(400).json({
