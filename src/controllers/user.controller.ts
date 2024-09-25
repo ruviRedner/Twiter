@@ -102,19 +102,20 @@ router.get("/profile/:id",async(
 })
 
 //? type = mine || else
-router.get("/followers",async(
+router.get("/followers/:id",async(
     req:Request
     ,res:Response
 ):Promise<void>=>{
     try {
-
-        res.status(200).json({
-            err:false,
-            message:"surry",
-            data:undefined
-        })
-        
-    } catch (err) {
+         const result = await UserService.getFolloers(req.params.id)
+         if(result){
+            res.status(200).json({
+                err:false,
+                message:"surry",
+                data:result
+            })
+        }
+        } catch (err) {
         res.status(400).json({
             err:true,
             message:"surry",
@@ -126,18 +127,19 @@ router.get("/followers",async(
 
 
 //? type = mine || else
-router.get("/following",async(
+router.get("/following/:id",async(
     req:Request
     ,res:Response
 ):Promise<void>=>{
     try {
-
-        res.status(200).json({
-            err:false,
-            message:"surry",
-            data:undefined
-        })
-        
+        const result = await UserService.getFolloing(req.params.id)
+        if(result){
+            res.status(200).json({
+                err:false,
+                message:"surry",
+                data:result
+            })
+        }
     } catch (err) {
         res.status(400).json({
             err:true,

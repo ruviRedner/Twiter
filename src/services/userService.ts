@@ -43,4 +43,35 @@ export default class UserService{
         return users.find(user => user.id == id)
     }
 
-}   
+    public static async getFolloers(id:string) : Promise<string[]>{
+        //get the file as an array
+        let users:User[] = await getFileData<User>('users') as User[];
+        const user = users.find(u => u.id == id)
+        if(!user){
+             throw new Error("gyfb");
+             
+            
+        }
+        return user.folowers
+    }
+
+    public static async getFolloing(id:string) : Promise<string[]>{
+        //get the file as an array
+        let users:User[] = await getFileData<User>('users') as User[];
+        const user = users.find(u => u.id == id)
+        if(!user){
+             throw new Error("gyfb");
+             
+            
+        }
+        return user.folowing
+    }
+
+   
+
+    
+        
+    
+}
+
+   
