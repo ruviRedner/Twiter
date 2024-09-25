@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const postService_1 = __importDefault(require("../services/postService"));
 const router = express_1.default.Router();
 router.get("/", async (req, res) => {
     try {
@@ -39,11 +40,17 @@ router.get("/search", async (req, res) => {
 });
 router.post("/", async (req, res) => {
     try {
-        res.status(200).json({
-            err: false,
-            message: "surry",
-            data: undefined
-        });
+        const result = await postService_1.default.createNewPost(req.body);
+        if (result) {
+            res.status(200).json({
+                err: false,
+                message: "surry",
+                data: req.body
+            });
+        }
+        else {
+            throw new Error("Cant save the user to the file");
+        }
     }
     catch (err) {
         res.status(400).json({

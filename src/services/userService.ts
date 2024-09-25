@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import User from '../models/User';
 import { getFileData, saveFile } from '../config/fileDataLayer';
 
-class UserService{
+export default class UserService{
     public static async createNewUser(newUser:newUserDto): Promise<boolean> {
             //create new User
             const {username,password,email,Birthday,avatarUrl} = newUser

@@ -1,22 +1,28 @@
 import express,{Request, Router,Response} from 'express';
+import UserService from '../services/userService';
 
 const router:Router = express.Router();
 router.post("/register",async(
-    req:Request
+    req:Request<any,any,newUserDto>
     ,res:Response
 ):Promise<void>=>{
     try {
-
-        res.status(200).json({
-            err:false,
-            message:"surry",
-            data:undefined
-        })
+        const result = await UserService.createNewUser(req.body);
+        if(result){
+            res.status(200).json({
+                err:false,
+                message:"data saved sucsspuly",
+                data:req.body
+            })
+        }else{
+            throw new Error("Cant save the user to the file")
+        }
+       
         
     } catch (err) {
         res.status(400).json({
             err:true,
-            message:"surry",
+            message: "sorry",
             data:null
         })
     }

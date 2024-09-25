@@ -1,4 +1,5 @@
 import express,{Router,Request,Response} from 'express';
+import PostService from '../services/postService';
 
 const router:Router = express.Router();
 router.get("/",async(
@@ -50,12 +51,17 @@ router.post("/",async(
     ,res:Response
 ):Promise<void>=>{
     try {
-
-        res.status(200).json({
-            err:false,
-            message:"surry",
-            data:undefined
-        })
+        const result = await PostService.createNewPost(req.body);
+        if(result){
+            res.status(200).json({
+                err:false,
+                message:"surry",
+                data:req.body
+            })
+        }else{
+            throw new Error("Cant save the user to the file")
+        }
+        
         
     } catch (err) {
         res.status(400).json({
