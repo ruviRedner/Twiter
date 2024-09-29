@@ -1,6 +1,7 @@
 import express,{Router,Request,Response} from 'express';
 import PostService from '../services/postService';
 import newPostDto from '../DTO/newPostDto';
+import verifyUser from '../middlewares/verifiUser';
 
 const router:Router = express.Router();
 router.get("/",async(
@@ -54,7 +55,7 @@ router.get("/search",async(
 
 })
 
-router.post("/",async(
+router.post("/", verifyUser, async(
     req:Request<any,any,newPostDto>
     ,res:Response
 ):Promise<void>=>{
@@ -106,7 +107,7 @@ router.get("/:id",async(
 
 })
 
-router.patch("/like/:idp/:idu",async(
+router.patch("/like/:idp/:idu", verifyUser ,async(
     req:Request
     ,res:Response
 ):Promise<void>=>{
