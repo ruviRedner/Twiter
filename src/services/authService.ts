@@ -1,4 +1,4 @@
-
+import bcrypt from "bcrypt"
 import { getFileData, saveFile } from '../config/fileDataLayer';
 import loginDTO from '../DTO/loginDto';
 import User from '../models/User';
@@ -21,8 +21,8 @@ export default class AuthService  {
                 throw new Error("401: No user with that username");  
             }
             //hash
-            if(user.password !== password){
-                throw new Error("403:Wrong password ");  
+            if(!await bcrypt.compare(password,user.password)){ 
+                throw new Error("403:Wrong password ");
             }
             const payloed = {username,id:user.id,avatarUrl:user.avatarUrl,email:user.email,isLockedAccount:user.isLockedAcccount}
             return   Jwt.sign(payloed,process.env.TOKEN_SECRET as string,{

@@ -1,56 +1,12 @@
 [
   {
     "username": "Jonny",
-    "password": "LoMgaleh",
+    "password": "$2b$10$7rLJbROBWWTvHgI5jD6t/OF9J1FtjRKCI8LXuscucfULdCKmq.6A.",
     "email": "jonny@jo.com",
     "avatarUrl": "https://randomuser.me/api/portraits/men/28.jpg",
     "folowers": [],
     "folowing": [],
     "isLockedAcccount": false,
-    "id": "ce87d226-d0ad-468c-be44-f39f94e62745"
-  },
-  {
-    "username": "Jonn",
-    "password": "LoMgaleh",
-    "email": "jonny@jo.com",
-    "avatarUrl": "https://randomuser.me/api/portraits/men/28.jpg",
-    "folowers": [],
-    "folowing": [],
-    "isLockedAcccount": false,
-    "id": "4875a81e-ed13-4a7b-98a8-f3902128d33e"
-  },
-  {
-    "username": "Jonn",
-    "password": "LoMgaleh",
-    "email": "jonny@jo.com",
-    "avatarUrl": "https://randomuser.me/api/portraits/men/28.jpg",
-    "folowers": [],
-    "folowing": [],
-    "isLockedAcccount": false,
-    "id": "2c16f4c3-c7e7-40db-ae18-0ce5a31c60eb"
-  },
-  {
-    "username": "Jonn",
-    "password": "LoMgaleh",
-    "email": "jonny@jo.com",
-    "avatarUrl": "https://randomuser.me/api/portraits/men/28.jpg",
-    "folowers": [],
-    "folowing": [
-      "72715410-273b-4a97-919d-de687dc5795a"
-    ],
-    "isLockedAcccount": false,
-    "id": "d7dd5a93-5de2-41c1-be06-116b7c7b2dee"
-  },
-  {
-    "username": "ruby",
-    "password": "LoMgal",
-    "email": "ruby@jo.com",
-    "avatarUrl": "https://randomuser.me/api/portraits/men/28.jpg",
-    "folowers": [
-      "d7dd5a93-5de2-41c1-be06-116b7c7b2dee"
-    ],
-    "folowing": [],
-    "isLockedAcccount": false,
-    "id": "72715410-273b-4a97-919d-de687dc5795a"
+    "id": "ca4b79ff-0dfd-47fc-a705-f0fea54a9d62"
   }
 ]

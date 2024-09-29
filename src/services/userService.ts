@@ -1,4 +1,4 @@
-
+import bcrypt from "bcrypt"
 import User from '../models/User';
 import { getFileData, saveFile } from '../config/fileDataLayer';
 
@@ -6,7 +6,9 @@ export default class UserService{
     public static async createNewUser(newUser:newUserDto): Promise<boolean> {
             //create new User
             const {username,password,email,Birthday,avatarUrl} = newUser
-            const user:User = new User(username,password,email,Birthday,avatarUrl);
+            //hash the password
+            const hashPassword :string = await bcrypt.hash(password,10)
+            const user:User = new User(username,hashPassword,email,Birthday,avatarUrl);
             //add to the user file
             //get the file as an array
             let users:User[] = await getFileData<User>('users') as User[];

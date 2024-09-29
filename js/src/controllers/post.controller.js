@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const postService_1 = __importDefault(require("../services/postService"));
+const verifiUser_1 = __importDefault(require("../middlewares/verifiUser"));
 const router = express_1.default.Router();
 router.get("/", async (req, res) => {
     try {
@@ -50,7 +51,7 @@ router.get("/search", async (req, res) => {
         });
     }
 });
-router.post("/", async (req, res) => {
+router.post("/", verifiUser_1.default, async (req, res) => {
     try {
         const result = await postService_1.default.createNewPost(req.body);
         if (result) {
@@ -94,7 +95,7 @@ router.get("/:id", async (req, res) => {
         });
     }
 });
-router.patch("/like/:idp/:idu", async (req, res) => {
+router.patch("/like/:idp/:idu", verifiUser_1.default, async (req, res) => {
     try {
         const result = await postService_1.default.likePost(req.params.idp, req.params.idu);
         if (result) {
