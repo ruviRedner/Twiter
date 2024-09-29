@@ -1,4 +1,6 @@
 import express,{Router,Response,Request} from 'express';
+import loginDTO from '../DTO/loginDto';
+import AuthService from '../services/authService';
 
 const router:Router = express.Router();
 
@@ -6,21 +8,25 @@ const router:Router = express.Router();
 export default router;
 
 router.post("/login",async(
-    req:Request
+    req:Request<any,any,loginDTO>
     ,res:Response
 ):Promise<void>=>{
     try {
-
+        const token = await AuthService.login(req.body)
         res.status(200).json({
             err:false,
-            message:"surry",
-            data:undefined
+            message:"here`s your token ",
+            data:token
         })
         
     } catch (err) {
-        res.status(400).json({
+        console.log(err as Error)
+        const [status,msg] = (err as Error).message.split(":")
+        res.status(Number(status)).json({
+            
+            
             err:true,
-            message:"surry",
+            message: msg || "Sorry no token today", 
             data:null
         })
     }

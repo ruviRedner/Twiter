@@ -1,4 +1,4 @@
-import exp,{Express} from 'express';
+import exp,{ Express } from 'express';
 import cookieParser from 'cookie-parser';
 import AuthController from './src/controllers/auth.controller';
 import PostController from './src/controllers/post.controller';
